@@ -1,0 +1,38 @@
+\begin{tikzpicture}
+  \def\vRad{2pt}
+  \tikzset{x=10pt,y=10pt}
+
+  % Robot's vertices definition
+  \coordinate (a1) at (6,0);
+  \coordinate (a2) at (1,6);
+  \coordinate (a3) at (-3.5,-1.0);
+  \coordinate (a4) at (0,-3);
+  \node[green,right=0.5em] at (a1){$a_1$};
+  \node[green,right=0.5em] (ve) at (a2){$a_2$};
+  \node[green,left=0.5em] at (a3){$a_3$};
+  \node[green,below=0.5em] at (a4){$a_4$};
+
+  % Robot's polygon
+  \draw[line join=round,green,fill=green!20,line width=\vRad] (a1) -- (a2) -- (a3) -- (a4) -- (a1) -- cycle;
+  \node[red] (R0) at (barycentric cs:a1=0.25,a2=0.25 ,a3=0.25,a4=0.25){};
+
+  \only<1>{ 
+    \fill[red] (R0) circle (\vRad) node[right=+0.5em] {$R_0=a$};
+    \draw[->] ($(R0)+(30:1)$) arc (20:310:1);
+  }
+
+\only<2->{
+  \fill[red!20] (R0) circle (\vRad) node[right=+0.5em] {$R_0$};
+  \node[red] (a) at (barycentric cs:a1=0.3,a2=0.8 ,a3=0.3){};
+  \fill[red] (a) circle (\vRad) node[right=+0.5em] {$a$};
+%  \draw[->] ($(a)+(40:1)$) arc (40:240:1);
+  \draw[->] (a) let \p1 = ($(R0)-(a)$) in  ++ (210: {veclen(\x1,\y1)}) arc (210:335:({veclen(\x1,\y1)});
+  \draw[blue,<->] (a) -- node[right]{$r_a$} (R0);
+}
+  
+  
+  % Robot's vertices plotting
+  \foreach \pts in {a1,a2,a3,a4}
+  \fill [green!70] (\pts) circle (2*\vRad);  
+  
+\end{tikzpicture}
