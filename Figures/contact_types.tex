@@ -1,0 +1,41 @@
+\begin{tikzpicture}
+  \tikzset{x=10pt,y=10pt}
+
+  \newcommand{\plotRobot}{
+    \begin{scope}%[rotate=\ortAngle]
+      \coordinate (a1) at ($(\Rx,\Ry)+(0+\ortAngle:2)$);
+      \coordinate (a2) at ($(\Rx,\Ry)+(90+\ortAngle:4)$);
+      \coordinate (a3) at ($(\Rx,\Ry)+(0+\ortAngle:0)$);
+
+      \draw [line join=round,green,fill=green!20, line width =\vRad,opacity=0.8] (a1)  -- (a2) -- (a3) -- cycle;
+
+      \foreach \pts in {a1,a2,a3}
+      \fill [green!70] (\pts) circle (2*\vRad);
+    \end{scope}
+  }
+
+  \coordinate (b11) at (1,0);
+  \coordinate (b21) at (2,4);
+  \coordinate (b31) at (0,5);
+  \coordinate (b41) at (-2,4);
+  \coordinate (b51) at (-2,0);
+  \draw[line join=round,red!90,fill=red!20,line width=\vRad,opacity=0.7] (b11) -- (b21) -- (b31)  -- (b41) -- (b51) --cycle;
+  \foreach \pts in {b11,b21,b31,b41,b51}
+  \fill [red!70] (\pts) circle (2*\vRad);
+
+
+  \newcommand{\Rx}{3}
+  \newcommand{\Ry}{3}
+  \newcommand{\ortAngle}{40}
+  \plotRobot{}
+
+  \renewcommand{\Rx}{-2}
+  \renewcommand{\Ry}{3}
+  \renewcommand{\ortAngle}{140}
+  \plotRobot{}
+\end{tikzpicture}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% End:
