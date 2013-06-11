@@ -100,37 +100,39 @@
 
 \begin{frame}
   \frametitle{Contact Types}
-  \begin{minipage}{0.4\linewidth}
-    \begin{overlayarea}{\textwidth}{0.6\textheight}
-      \only<1->{
-        We consider two \emph{main} types of contacts:
-        \begin{itemize}
-        \item Vertex-Edge
-        \item Edge-Vertex
-        \end{itemize}
-      }
+  \begin{columns}[c]
+    \begin{column}{0.4\textwidth}
+      \begin{minipage}[c][\textheight]{\columnwidth}
+        \onslide<1->{
+          We consider two \emph{main} types of contacts:
+          \begin{itemize}
+          \item Vertex-Edge
+          \item Edge-Vertex
+          \end{itemize}
+        }
 
-      \only<2->{
-        We can have two additional types of contact:
-        \begin{itemize}
-        \item Vertex-Vertex
-        \item Edge-Edge
-        \end{itemize}
-      }
-    \end{overlayarea}
-  \end{minipage}
-\note<2->{
-  First type of contacts have 2 DOF
+        \onslide<2->{
+          We can have two additional types of contact:
+          \begin{itemize}
+          \item Vertex-Vertex
+          \item Edge-Edge
+          \end{itemize}
+        }
+      \end{minipage}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{minipage}[c][\textheight]{\columnwidth}
+        \begin{center}
+          \input{Figures/contact-types}
+        \end{center}
+      \end{minipage}
+    \end{column}
+  \end{columns}
+  \note<2->{
+    First type of contacts have 2 DOF
 
-  Second type of contacts have \emph{only} 1 DOF
-}
-  %
-  \hfill
-  \begin{minipage}{0.55\linewidth}
-    \begin{center}
-      \input{Figures/contact-types}
-    \end{center}
-  \end{minipage}
+    Second type of contacts have \emph{only} 1 DOF
+  }
 \end{frame}
 
 \begin{frame}
