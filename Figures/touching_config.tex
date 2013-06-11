@@ -1,5 +1,4 @@
 \begin{tikzpicture}
-  \def\vRad{2pt}
   \tikzset{x=10pt,y=10pt}
 
   \newcommand{\plotRobot}{
@@ -7,9 +6,9 @@
       \coordinate (a1) at ($(\Rx,\Ry)+(0+\ortAngle:2)$);
       \coordinate (a2) at ($(\Rx,\Ry)+(90+\ortAngle:4)$);
       \coordinate (a3) at ($(\Rx,\Ry)+(0+\ortAngle:0)$);
-      
+
       \draw [line join=round,green,fill=green!20, line width =\vRad,opacity=0.8] (a1)  -- (a2) -- (a3) -- cycle;
-      
+
       \foreach \pts in {a1,a2,a3}
       \fill [green!70] (\pts) circle (2*\vRad);
     \end{scope}
@@ -34,3 +33,8 @@
   \renewcommand{\ortAngle}{140}
   \plotRobot{}
 \end{tikzpicture}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% End:

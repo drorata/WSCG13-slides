@@ -155,10 +155,10 @@
     The space \(\mathcal{C} = \left( \mathbb{R}^2 \times S^1 \right)\) is called the \emph{configuration space} of a given robot \(\mathcal{A}\).
 
     \begin{itemize}
-    \item \(\mathcal{C}_{free} = \left\{ q \in \mathcal{C} \mid \,
-        \mathcal{A}(q) \cap \left(\bigcup_{j} \mathcal{O}_j\right)=
+    \item \(\mathcal{C}_{forb} = \left\{ q \in \mathcal{C} \mid \,
+        \mathrm{int}(\mathcal{A}(q)) \cap \left(\bigcup_{j} \mathrm{int}(\mathcal{O}_j)\right) \neq
         \emptyset \right\} \)
-    \item \(\mathcal{C}_{forb}  = \mathcal{C} \setminus \mathcal{C}_{free}\)
+    \item \(\mathcal{C}_{free}  = \mathcal{C} \setminus \mathcal{C}_{forb}\)
     \end{itemize}
   \end{definition}
 \end{frame}
@@ -179,40 +179,56 @@
 
 \begin{frame}
   \frametitle{Rising of Contact Surfaces}
-  In the \emph{configuration space}, we consider the following sets:
-  \begin{itemize}
-  \item Vertex-Edge Contact: \( \left\{ q\in \mathcal{C} \mid \, a_i \in \partial \mathcal{O}_j\right\}\)
-  \item Edge-Vertex Contact: \( \left\{ q\in \mathcal{C} \mid \, b_j \in \partial \mathcal{A}\right\}\)
-  \end{itemize}
-
-
-  \begin{overlayarea}{\textwidth}{0.7\textheight}
-    \only<1->{
-      \begin{block}{Remark}
-        \begin{itemize}
-        \item<1-> Each of the sets intersect both \(\mathcal{C}_{free}\)
-          and \(\mathcal{C}_{forb}\).
-        \item<2-> Geometrically speaking, the sets are \emph{ruled
-            surfaces} in \(\mathcal{C}\).
-        \end{itemize}
-      \end{block}
-    }
-
-    \only<1>{
-      \begin{figure}
-        \centering
-        \include{Figures/touching_config}
-      \end{figure}
-    }
-
-    \only<2>{
-      \begin{center}
-        \href{run:Demos/touching_example.app}{Demo Example\\
-          \includegraphics[scale=0.2]{Figures/Title_picture}
+  \begin{columns}[c]
+    \begin{column}{0.6\textwidth}
+      \begin{minipage}[c][\textheight]{\columnwidth}
+        \onslide<1->{
+          In the \emph{configuration space}, we consider the following sets:
+          \begin{itemize}
+          \item \textbf{Vertex-Edge Contact}: \( \left\{ q\in \mathcal{C} \mid \, a_i
+              \in \partial \mathcal{O}_j\right\}\)
+          \item \textbf{Edge-Vertex Contact}: \( \left\{ q\in \mathcal{C} \mid \, b_j
+              \in \partial \mathcal{A}\right\}\)
+          \end{itemize}
         }
-      \end{center}
-    }
-  \end{overlayarea}
+        \note<3->{Say something of v-v contacts and e-e contacts}
+
+        \onslide<2->{
+          \begin{block}{Remark}
+            Each of the sets intersect both \(\mathcal{C}_{free}\) and \(\mathcal{C}_{forb}\) and thus they play a major role in the topology of \(\mathcal{C}\)-space.
+          \end{block}
+        }
+        \onslide<3->{
+          \begin{alertblock}{Goal}
+            Parameterize and study the geometry of these sets.
+          \end{alertblock}
+      }
+      \end{minipage}
+    \end{column}
+    %
+    \begin{column}{0.38\textwidth}
+      \begin{minipage}[c][\textheight]{\columnwidth}
+        \only<1>{
+          \centering
+          \input{Figures/contact_types}
+        }
+        \only<2>{
+          \begin{figure}
+            \centering
+            \input{Figures/touching_config}
+          \end{figure}
+        }
+
+        \only<3>{
+          \begin{center}
+            % \href{run:Demos/touching_example.app}{Demo Example\\
+              \includegraphics[width=0.95\columnwidth]{Figures/Title_picture}
+            % }
+          \end{center}
+        }
+      \end{minipage}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}
