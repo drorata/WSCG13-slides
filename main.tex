@@ -9,7 +9,7 @@
 
 \def\vRad{2pt} % Radius of vertices in TikZ images
 
-\setbeameroption{show notes}
+\setbeameroption{hide notes}
 
 \logosmall{logos/fu_small_logo}
 \logobig{logos/fu_big_logo}
@@ -235,18 +235,16 @@
 
 
 \section{Contact Surfaces Parameterization}
-\begin{frame}{}
+\begin{frame}
   \frametitle{Let it rotate\dots}
-  \begin{center}
-    We consider the rotation of the robot about a fixed point
-    \(a\in\mathcal{A}\)
-  \end{center}
+  We consider the rotation of the robot about a fixed point \(P \in \mathcal{W}\) such that  \(a\in\mathcal{A}\) is fixed to \(P\).
+  \[P_a = \left\{ q \in \mathcal{C} \mid a(q) = P \right\}\]
   \vskip1ex
   \begin{minipage}{.4\linewidth}
     \begin{overlayarea}{\textwidth}{5cm}
       \begin{figure}
         \centering
-        \include{Figures/rotate_about_point}
+        \input{Figures/rotate_about_point}
       \end{figure}
     \end{overlayarea}
   \end{minipage}
@@ -255,13 +253,12 @@
     \begin{overlayarea}{\textwidth}{5cm}
       \only<1>{
         \vfill
-        Yields a \emph{straight line} in the \(\theta\)
-        direction
+        If \(a = R_0\) then \(P_a\) is a vertical \emph{straight} line.
       }
       \only<2->{
         \vfill
-        Yields a \emph{helix} with axis in the
-        \(\theta\) direction
+        If \(a\) is some arbitrary point in \(\mathcal{A}\) then \(P_a\) is a \emph{helix} with axis in the
+        \(\theta\) direction.
         \vskip1ex
         \begin{tikzpicture}
           \begin{axis}[
@@ -295,14 +292,14 @@
   \begin{minipage}{0.45\linewidth}
     \begin{block}{The parameterization}
       \[
-      q_a(\phi) = \binom{\vec{r}_a(\phi)}{\theta_a(\phi)} \in
+      q^P_a(\phi) = \binom{\vec{r}(\phi)}{\theta(\phi)} \in
       \mathcal{C}
       \]
       where:
 
     \begin{align*}
-      \vec{r}_a(\phi) & =  P- R^{\phi} a\\
-      \theta_a(\phi) & = \phi \mod 2\pi
+      \vec{r}(\phi) & =  P- R^{\phi} a\\
+      \theta(\phi) & = \phi \mod 2\pi
     \end{align*}
   \end{block}
 \end{minipage}
@@ -317,158 +314,141 @@
 
 \begin{frame}
   \frametitle{Vertex-Edge Contact}
-  By setting the anchor at one of the robot's vertices and
-  let it \emph{rotate} and \emph{translate} along an obstacle's edge
-  \(E^{\mathcal{O}}_j\) we obtain a contact surface in
-  \(\mathcal{C}\).
-
-  \begin{figure}
-    \centering
-    \includegraphics[scale=0.3]{Figures/vecc}
-  \end{figure}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \begin{minipage}[c][\textheight]{\columnwidth}
+        \begin{itemize}
+        \item<1-> Take the parameterization of rotation \(q^P_a(\phi) = \binom{P-R^{\phi} a}{\phi \mod 2\pi}\)
+        \item<2-> Set \(P(t) = (1-t) b_j + t b_{j+1} \in E^{\mathcal{O}}_j\)
+        \item<3-> Then%
+          \[S(t,\phi)  = q ^{P(t)}_{a_i}(\phi)\]%
+          is a \emph{developable surface} which parameterizes a \emph{vertex-edge} contact surface.
+        \end{itemize}
+      \end{minipage}
+  \end{column}
+  \begin{column}{0.45\textwidth}
+    \begin{minipage}[c][\textheight]{\columnwidth}
+      \centering
+      \onslide<3>{\includegraphics[width=0.9\columnwidth]{Figures/vecc}}
+    \end{minipage}
+  \end{column}
+\end{columns}
+\note<3->{Say that the surfaces have to become \textbf{patches}!}
 \end{frame}
 
 \begin{frame}
   \frametitle{Edge-Vertex Contact}
-  Given an edge \(E^{\mathcal{A}}_i\) of the robot and a vertex
-  \(b_j\) of an obstacle, we can set the anchor to be
-  \[
-  a_{i,t} = (1-t) a_i + t a_{i+1} \in E^{\mathcal{A}}_i
-  \]
-  For every \(t\) we can rotate \(\mathcal{A}\) about \(a_{i,t}\) and
-  obtain a helix. Letting \(t\) vary yields the contact surface.
-
-  \begin{figure}
-    \centering
-    \includegraphics[scale=0.2]{Figures/evcc}
-  \end{figure}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Vertex-Vertex Contact}
-  For a robot's vertex \(a_i\) and an obstacle's vertex \(b_j\), we
-  obtain helical arc. And for all pairs:
-
-  \begin{figure}
-    \centering
-    \includegraphics[scale=0.2]{Figures/vvcontact_config}
-  \end{figure}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \begin{minipage}[c][\textheight]{\columnwidth}
+        \begin{itemize}
+        \item<1-> Take the parameterization of rotation \(q^P_a(\phi) = \binom{P-R^{\phi} a}{\phi \mod 2\pi}\)
+        \item<2-> Set \(a(t) = (1-t) a_i + t a_{i+1}\)
+        \item<3-> Then \[S(t,\phi)  = q ^{b_j}_{a(t)}(\phi)\] is a \emph{non cylindrical ruled surface} which parameterizes an \emph{edge-vertex} contact surface.
+        \end{itemize}
+      \end{minipage}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{minipage}[c][\textheight]{\columnwidth}
+        \centering
+        \onslide<3>{\includegraphics[width=0.9\columnwidth]{Figures/evcc}}
+      \end{minipage}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}
   \frametitle{The Full Picture}
-  \begin{minipage}{0.4\linewidth}
+  \begin{minipage}[c][\textheight]{0.5\linewidth}
     \begin{itemize}
-    \item<1-> For all possible combinations we obtain the object to
+    \item<1-> For all possible vertex-edge and edge-vertex combinations we obtain the object to
       the right.
     \item<1-> In the convex case, we can easily compute the exact
       contact patches.
     \end{itemize}
   \end{minipage}
-  \begin{minipage}{0.45\linewidth}
+  \hfill
+  \begin{minipage}[c][\textheight]{0.45\linewidth}
     \begin{figure}
       \centering
-      \includegraphics[height=0.95\textheight]{Figures/full_contact}
+      \includegraphics[width=0.95\linewidth]{Figures/full_contact}
     \end{figure}
   \end{minipage}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Alternative Parameterization}
-  \begin{block}{Parameterization's Drawback}
+  \frametitle{Be Rational!}
+  \begin{block}{Drawback}
     In the introduced parameterization, non algebraic computations are
     needed. Thus, its accuracy in practical applications is limited.
   \end{block}
   \begin{block}{Rational Workaround}
-    Setting \(\psi=\tan \frac{\phi}{2}\) and
-    \[
+    Set \(\psi=\tan \frac{\phi}{2}\) and %
+    \(
     M^\psi = \frac{1}{1+\psi^2}\begin{pmatrix}
       1-\psi^2 & -2 \psi \\
       2\psi & 1-\psi^2
     \end{pmatrix}
-    \]
+    \) %
     we obtain a \emph{rational parameterization}
     \[
-    k_a(\psi) = \left( \vec{r}_a(\psi),\tau_a(\psi)\right)
+    k^P_a(\psi) = \left( \vec{r}(\psi),\tau(\psi)\right)
     \]
     where
     \begin{align*}
-      \vec{r}_a(\psi) = & P - M^\psi a\\
-      \tau_a(\psi) = & \psi
+      \vec{r}(\psi) = & P - M^\psi a\\
+      \tau(\psi) = & \psi
     \end{align*}
 for \(\psi\in (-\infty,+\infty)\).
   \end{block}
 \end{frame}
 
-\section{Geometrical Properties and Remarks}
+\section{Geometrical Properties}
 
-\subsection{Vertex-Edge Contact Surfaces}
 \begin{frame}
-  \frametitle{Gaussian Curvature}
-  \begin{minipage}{0.6\linewidth}
-    The contact surface consists of translated copies of the
-    \emph{same} helix, therefore it is:
+  \frametitle{Vertex-Edge Contact Surface}
+  \begin{minipage}{0.63\linewidth}
+    The contact surface consists of translated copies of \emph{congruent}
+    helix, therefore it is:
     \begin{itemize}
     \item Cylindrical
     \item Developable
-    \item Has vanishing Gaussian curvature
+    \item Has vanishing \emph{Gaussian curvature}
+    \item The \emph{mean curvature} vanishes if and only if \(a_i = \vec{0}\). In this case, the surface is a vertical plane.
     \end{itemize}
   \end{minipage}
+  \hfill
   \begin{minipage}{0.35\linewidth}
     \begin{figure}
       \centering
       \includegraphics[height=0.9\textheight]{Figures/ve-full-contact}
     \end{figure}
   \end{minipage}
-
 \end{frame}
 
 \begin{frame}
-  \frametitle{Mean Curvature}
-  The mean curvature is given by:
-\small{
-  \[
-  H=\frac{\|b_j-b_{j+1}\|^2\left( \cos \phi \langle R^{-\pi/2}\cdot
-      a_i,b_j-b_{j+1} \rangle +\sin \phi \langle
-      a_i,b_j-b_{j+1}\rangle\right)}{2\left(
-      \left(1+\|a_i\|^2\right)\|b_j-b_{j+1}\|^2-
-\left(\cos \phi \langle R^{-\pi/2}\cdot a_i , b_{j+1}-b_j \rangle + \sin
-\phi \langle a_i, b_{j+1}-b_j\right)^2 \right)^{3/2}}
-  \]}
+  \frametitle{Edge-Vertex Contact Surface}
+  \begin{minipage}{0.63\linewidth}
+    \begin{itemize}
+    \item Has negative \emph{Gaussian curvature} and is at most \(-1\).
+    \item Has vanishing \emph{mean curvature} if the reference point
+      is on the edge.
+    \item Both curvatures depend \emph{only} on \(t\)
+    \item The curvatures extrema are attained along the \emph{same}
+      and \emph{unique} helix.
+    \end{itemize}
 
-\begin{block}{Remarks}
-  \begin{itemize}
-  \item \(H\) depends only on \(\phi\).
-  \item \(H(\phi) = 0\) if and only if \(a_i =\vec{0}\).
-  \item If \(a_i=\vec{0}\) then the contact surface is a vertical plane.
-  \end{itemize}
-\end{block}
-\end{frame}
-
-\subsection{Edge-Vertex Contact Surfaces}
-\begin{frame}
-  \frametitle{Curvatures}
-  \begin{minipage}{0.6\linewidth}
-    \begin{block}{Two facts:}
-      \begin{itemize}
-      \item Has negative \emph{Gaussian curvature} and is at most \(-1\).
-      \item Has vanishing \emph{mean curvature} if the reference point
-        is on the edge.
-      \item The curvatures extrema are attained along the \emph{same}
-        and \emph{unique} helix.
-      \end{itemize}
-    \end{block}
-
-  \begin{center}
-    \href{run:Demos/ev-curvatrue.app}{Demo Example}
-  \end{center}
-\end{minipage}
-\begin{minipage}{0.35\linewidth}
-  \begin{figure}
-    \centering
-    \includegraphics[height=0.9\textheight]{Figures/ev-full-contact}
-  \end{figure}
-\end{minipage}
+    % \begin{center}
+    %   \href{run:Demos/ev-curvatrue.app}{Demo Example}
+    % \end{center}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.35\linewidth}
+    \begin{figure}
+      \centering
+      \includegraphics[height=0.95\textheight]{Figures/ev-full-contact}
+    \end{figure}
+  \end{minipage}
 \end{frame}
 
 \section{Summary}
@@ -478,40 +458,37 @@ for \(\psi\in (-\infty,+\infty)\).
   We considered:
   \begin{itemize}
   \item Parameterization of contact surfaces for polygonal robot in
-    the plan, basing on rotations of the robot.
+    the plan.
   \item Geometrical analysis of the contact surfaces.
-  \item Optimal piecewise linear approximation of:
-    \begin{itemize}
-    \item Space curves
-    \item Cylindrical surfaces
-    \end{itemize}
   \end{itemize}
+  %
+  % \vspace{5ex}
+  %
+  \onslide<2->{
+    \begin{center}
+      \begin{tikzpicture}
+        \node[rotate=-30,align=center] at (0,-2cm){%
+          \begin{Huge}Thank you!\end{Huge}\\
+          \texttt{dror.atariah@fu-berlin.de}
+        };
+      \end{tikzpicture}
+    \end{center}
+
+    \begin{center}
+      \begin{tiny}
+        \href{run:run_video}{Local video} / \href{http://www.youtube.com/watch?v=SBFwgR4K1Gk&feature=youtu.be&t=7m3s}{YouTube version}
+      \end{tiny}
+    \end{center}
+  }
 \end{frame}
 
-\begin{frame}
-  \frametitle{Future Work}
-  \begin{itemize}
-  \item Complete the approximation theory and applications for the
-    general ruled surface case.
-  \item Using offsets, obtain conservative approximation.
-  \item Study the effects of reference point varying.
-  \end{itemize}
-\end{frame}
 
 % All of the following is optional and typically not needed.
 
- \appendix
+\appendix
 % \section<presentation>{References}
 % \begin{frame}[allowframebreaks]{For Further Reading}
 % \bibliographystyle{plain}
 % \bibliography{/media/data/documents/BiBTeX/personalRef.bib}
 % \end{frame}
-
-\begin{frame}
-	\begin{center}
-	\begin{Huge}Thank you! \end{Huge}\\
-	\texttt{dror.atariah@fu-berlin.de}
-	\end{center}
-\end{frame}
-
 \end{document}
