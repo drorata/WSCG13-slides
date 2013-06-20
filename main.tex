@@ -65,73 +65,68 @@
 
 \begin{frame}
   \frametitle{Setting}
-  \begin{minipage}{.4\linewidth}
-    \begin{overlayarea}{\textwidth}{0.6\textheight}
-      \only<1-2>{
-        A planar polygonal (convex) robot \(\mathcal{A}\) moving amid
-        polygonal (convex) obstacles \(\{ \mathcal{O}_j \}_{j\in
-          J}\).
+  \begin{columns}[c]
+    \begin{column}{0.4\textwidth}
+      \begin{minipage}[c][\textheight]{1.0\columnwidth}
+          \onslide<1-2>{%
+            A planar polygonal (convex) robot
+            \(\mathcal{A}\) moving amid polygonal (convex) obstacles
+            \(\{ \mathcal{O}_j \}_{j\in J}\).
 
-        \begin{block}{Free\dots}
-          Can be either in a \emph{free configuration}
-          \(\mathcal{C}_{free}\).
-        \end{block}
-
-      }
-      \only<2>{
-        \begin{block}{Forbidden\dots}
-          \emph{Or,} forbidden one \(\mathcal{C}_{forb} = \mathcal{C}
-          \setminus \mathcal{C}_{free} \).
-        \end{block}
-
-      }
-    \end{overlayarea}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{.55\linewidth}
-    \begin{overlayarea}{\textwidth}{\textheight}
-      \begin{figure}
+            \begin{block}{Free\dots}
+              Can be either in a \emph{free configuration}
+              \(\mathcal{C}_{free}\).
+            \end{block}%
+          }%
+          \onslide<2>{%
+            \begin{block}{Forbidden\dots}
+              \emph{Or,} forbidden one \(\mathcal{C}_{forb} =
+              \mathcal{C} \setminus \mathcal{C}_{free} \).
+            \end{block}
+          }%
+      \end{minipage}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{minipage}[c][\textheight]{1.0\columnwidth}
         \centering
-        \include{Figures/general_setting}
-      \end{figure}
-    \end{overlayarea}
-  \end{minipage}
+        \input{Figures/general_setting}
+      \end{minipage}
+    \end{column}
+  \end{columns}
 \end{frame} %Setting
 
 \begin{frame}
   \frametitle{Contact Types}
   \begin{columns}[c]
     \begin{column}{0.4\textwidth}
-      \begin{minipage}[c][\textheight]{\columnwidth}
-        \onslide<1->{
+      \begin{minipage}[c][\textheight]{1.0\columnwidth}
+        \onslide<1->{%
           We consider two \emph{main} types of contacts:
           \begin{itemize}
           \item Vertex-Edge
           \item Edge-Vertex
           \end{itemize}
-        }
-
-        \onslide<2->{
+        }%
+        \onslide<2->{%
           We can have two additional types of contact:
           \begin{itemize}
           \item Vertex-Vertex
           \item Edge-Edge
           \end{itemize}
-        }
+        }%
       \end{minipage}
     \end{column}
     \begin{column}{0.55\textwidth}
-      \begin{minipage}[c][\textheight]{\columnwidth}
-        \begin{center}
-          \input{Figures/contact-types}
-        \end{center}
+      \begin{minipage}[c][\textheight]{1.0\columnwidth}
+        \centering
+        \input{Figures/contact-types}
       \end{minipage}
     \end{column}
   \end{columns}
   \note<2->{
-    First type of contacts have 2 DOF
+  First type of contacts have 2 DOF
 
-    Second type of contacts have \emph{only} 1 DOF
+  Second type of contacts have \emph{only} 1 DOF
   }
 \end{frame}
 

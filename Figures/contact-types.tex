@@ -1,67 +1,61 @@
-\begin{tikzpicture}
-  \tikzset{x=10pt,y=10pt}
-  % Robot's vertices definition
-  \coordinate (a1) at (5,0);
-  \coordinate (a2) at (1,4);
-  \coordinate (a3) at (-3.5,-1.0);
-  \coordinate (a4) at (0,-3);
-  \node[green,right=0.5em] at (a1){$a_1$};
-  \node[green,right=0.5em] (ve) at (a2){$a_2$};
-  \node[green,left=0.5em] at (a3){$a_3$};
-  \node[green,below=0.5em] at (a4){$a_4$};
+\begin{tikzpicture}[%
+  obstacle/.style={line join=round,red!90,fill=red!20,line width=\vRad},
+  obstacle vertices/.style={red!70},
+  obstacle vertices label/.style={red!50!black},
+  robot/.style={line join=round,green,fill=green!20,line width=\vRad},
+  robot vertices/.style={green!70},
+  robot vertices label/.style={green!50!black}
+  ]
 
-  % Robot's polygon
-  \draw[line join=round,green,fill=green!20,line width=\vRad] (a1) -- node[right]
-  {$e_{1,2}$} (a2) -- node[left] {$e_{2,3}$} (a3) -- node[below=0.2em]
-  {$e_{3,4}$} (a4) -- node[below=0.2em] {$e_{4,1}$} (a1) -- cycle;
-  \node[green] at (barycentric cs:a1=0.25,a2=0.25 ,a3=0.25,a4=0.25){$\mathcal{A}$};
-  % Robot's vertices plotting
-  \foreach \pts in {a1,a2,a3,a4}
-  \fill [green!70] (\pts) circle (2*\vRad);
+  \coordinate (b11) at (3,4);
+  \coordinate (b12) at (4,5);
+  \coordinate (b13) at (3,6);
+  \coordinate (b14) at (1,4.5);
 
-  \def\oAngle{101}
-  % Defining the vertices relative to (a2), and making sure it
-  % is tangent.
-  \coordinate (a2tmp) at ($(a2)+(\oAngle:2.5*\vRad)$);
-  \coordinate (b11) at ($(a2tmp)+(\oAngle+90:3)$); \coordinate
-  (b21) at ($(a2tmp)+(\oAngle-90:2)$); \coordinate (b31) at
-  ($(a2tmp)+(\oAngle+5:4.5)$); \node [red,left=0.2em] at (b11)
-  {$b_1^1$}; \node [red,right=0.2em] at (b21) {$b_2^1$}; \node
-  [red,above=0.2em] at (b31) {$b_3^1$};
+  \draw[obstacle] %
+  (b11)node[obstacle vertices label,right]{$b_1^1$} --
+  (b12)node[obstacle vertices label,right]{$b_2^1$} --
+  (b13)node[obstacle vertices label,above]{$b_3^1$} --
+  (b14)node[obstacle vertices label,left]{$b_4^1$} -- cycle;
+  \foreach \i in {1,2,3,4}
+  \fill[obstacle vertices] (b1\i) circle (2*\vRad);
 
-  % 1st obstacle's polygon
-  \draw[line join=round,red!90,fill=red!20,line width=\vRad]
-  (b11) -- (b21) -- (b31) -- cycle; \node[red] at (barycentric
-  cs:b11=0.333,b21=0.333,b31=0.333){$\mathcal{O}_1$};
+  \coordinate (b21) at (3,0);
+  \coordinate (b22) at (5,1);
+  \coordinate (b23) at (6,3);
+  \coordinate (b24) at (2,1);
 
-  \foreach \pts in {b11,b21,b31} \fill [red!70] (\pts) circle
-  (2*\vRad);
+  \draw[obstacle] %
+  (b21)node[obstacle vertices label,left]{$b_1^2$} --
+  (b22)node[obstacle vertices label,below]{$b_2^2$} --
+  (b23)node[obstacle vertices label,above]{$b_3^2$} --
+  (b24)node[obstacle vertices label,left]{$b_4^2$} -- cycle;
+  \foreach \i in {1,2,3,4}
+  \fill[obstacle vertices] (b2\i) circle (2*\vRad);
 
-  %%%%%
-  % 2nd obstacle
-  \coordinate (b12tmp) at ($(a4)!(10,-11)!(a1)$); \coordinate
-  (b12) at ($(b12tmp)!2.5*\vRad!(10,-11)$); \node[above right]
-  (ev) at (b12){}; \coordinate (b22) at ($(b12)+(355:5)$);
-  \coordinate (b32) at ($(b12)+(290:5.2)$);
+  \coordinate (a1) at (5,5);%
+  \coordinate (a2) at (2,3.5);%
+  \coordinate (a3) at (4,2);%
+  \draw[robot] %
+  (a1)node[robot vertices label,right]{$a_1$} --
+  (a2)node[robot vertices label,left]{$a_2$} --
+  (a3)node[robot vertices label,below]{$a_3$} -- cycle;%
+  \foreach \i in {1,2,3}%
+  \fill[robot vertices] (a\i) circle (2*\vRad);%
 
-  \draw[line join=round,red!90,fill=red!20,line width=\vRad]
-  (b12) -- (b22) -- (b32) -- cycle; \node[red] at (barycentric
-  cs:b12=0.333,b22=0.333,b32=0.333){$\mathcal{O}_2$};
-
-  \foreach \pts in {b12,b22,b32} \fill [red!70] (\pts) circle
-  (2*\vRad);
 
   %%%%%%
   % Annotating
-  \draw[blue,<-,line width=0.25*\vRad] (ve) .. controls
-  ($(ve)+(-15:3.5)$) .. ($(ve)+(5,6)$);
-  \node[blue,above,align=center] at ($(ve)+(5,6)$)
-  {Vertex-Edge\\Contact};
+  \draw[blue,<-,line width=0.5*\vRad, shorten <=2*\vRad] (a3) .. controls
+  ($(a3)+(150:2.75)$) .. ($(b24)+(0,1.5)$);
+  \node[blue,below,align=center] at ($(b24)+(0,1.5)$)
+  {\tiny{Vertex-Edge}\\\tiny{Contact}};
 
-  \draw[blue,<-,line width=0.25*\vRad] (ev) .. controls
-  ($(ev)+(5:5)$) .. ($(ev)+(5,4)$);
-  \node[blue,above,align=center] at ($(ev)+(5,4)$)
-  {Edge-Vertex\\Contact};
+  \draw[blue,<-,line width=0.5*\vRad, shorten <=2*\vRad] (b11) .. controls
+  ($(b11)+(55:3)$) .. ($(b23)+(-1,0.5)$);
+  \node[blue,below,align=center] at ($(b23)+(-1,0.5)$)
+  {\tiny{Edge-Vertex}\\\tiny{Contact}};
+
 \end{tikzpicture}
 %%% Local Variables:
 %%% mode: latex
