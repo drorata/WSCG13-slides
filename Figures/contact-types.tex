@@ -19,6 +19,7 @@
   (b14)node[obstacle vertices label,left]{$b_4^1$} -- cycle;
   \foreach \i in {1,2,3,4}
   \fill[obstacle vertices] (b1\i) circle (2*\vRad);
+  \node[obstacle vertices] at (barycentric cs:b11=0.25,b12=0.25,b13=0.25,b14=0.25) {$\mathcal{O}_1$};
 
   \coordinate (b21) at (3,0);
   \coordinate (b22) at (5,1);
@@ -32,6 +33,7 @@
   (b24)node[obstacle vertices label,left]{$b_4^2$} -- cycle;
   \foreach \i in {1,2,3,4}
   \fill[obstacle vertices] (b2\i) circle (2*\vRad);
+  \node[obstacle vertices] at (barycentric cs:b21=0.25,b22=0.25,b23=0.25,b24=0.25) {$\mathcal{O}_2$};
 
   \coordinate (a1) at (5,5);%
   \coordinate (a2) at (2,3.5);%
@@ -42,6 +44,7 @@
   (a3)node[robot vertices label,below]{$a_3$} -- cycle;%
   \foreach \i in {1,2,3}%
   \fill[robot vertices] (a\i) circle (2*\vRad);%
+  \node at (barycentric cs:a1=0.3333,a2=0.33333 ,a3=0.3333) {$\mathcal{A}$};
 
 
   %%%%%%
